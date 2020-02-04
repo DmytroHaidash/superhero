@@ -70,9 +70,9 @@ class SuperheroesController extends Controller
         return \view('superheroes.edit', compact('hero'));
     }
 
-    public function update(Request $request, Superhero $superhero):RedirectResponse
+    public function update(Request $request, Superhero $hero):RedirectResponse
     {
-        $superhero->update([
+        $hero->update([
             'nickname​' => $request->input('nickname​'),
             'real_name' => $request->input('real_name'),
             'origin_description​' => $request->input('origin_description​'),
@@ -83,7 +83,7 @@ class SuperheroesController extends Controller
             foreach ($request->media as $media) {
                 Media::find($media)->update([
                     'model_type' => Superhero::class,
-                    'model_id' => $superhero->id,
+                    'model_id' => $hero->id,
                 ]);
             }
         }
